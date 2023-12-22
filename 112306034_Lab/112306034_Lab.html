@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action = "#">
+        <input id = "rollButton" type = "button" value = "Roll Dice"> 
+        </form>
+            <div>
+            <img id = "die1" src = "die1.png" alt = "blank image">
+            <img id = "die2" src = "die1.png" alt = "blank image">
+            <img id = "die3" src = "die1.png" alt = "blank image">
+            <img id = "die4" src = "die1.png" alt = "blank image">
+            <img id = "die5" src = "die1.png" alt = "blank image">
+            <img id = "die6" src = "die1.png" alt = "blank image">
+        </div>
+        <div>
+            <img id = "die7" src = "die1.png" alt = "blank image">
+            <img id = "die8" src = "die1.png" alt = "blank image">
+            <img id = "die9" src = "die1.png" alt = "blank image">
+            <img id = "die10" src = "die1.png" alt = "blank image">
+            <img id = "die11" src = "die1.png" alt = "blank image">
+            <img id = "die12" src = "die1.png" alt = "blank image">
+        </div>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>Number</th>
+                    <th>Count</th>
+                    <th>Probability (%)</th>
+                </tr>
+                <tr id="number1">
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr id="number2">
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr id="number3">
+                    <td>3</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr id="number4">
+                    <td>4</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr id="number5">
+                    <td>5</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr id="number6">
+                    <td>6</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </table>
+        </div>
+    <script>
+        window.addEventListener("load", start);
+        function start (){
+            var button = document.getElementById( "rollButton" );
+            button.addEventListener("click", rollDice );
+            die1Image = document.getElementById( "die1" );
+            die2Image = document.getElementById( "die2" );
+            die3Image = document.getElementById( "die3");
+            die4Image = document.getElementById( "die4" );
+            die5Image = document.getElementById( "die5" );
+            die6Image = document.getElementById( "die6" );
+            die7Image = document.getElementById( "die7" );
+            die8Image = document.getElementById( "die8" );
+            die9Image = document.getElementById( "die9" );
+            die10Image = document.getElementById( "die10" );
+            die11Image = document.getElementById( "die11" );
+            die12Image = document.getElementById( "die12" );
+            }
+        function rollDice() {
+            one = 0;
+            two = 0;
+            three = 0;
+            four = 0;
+            five = 0;
+            six = 0;
+            setImage(die1Image);
+            setImage(die2Image);
+            setImage(die3Image);
+            setImage(die4Image);
+            setImage(die5Image);
+            setImage(die6Image);
+            setImage(die7Image);
+            setImage(die8Image);
+            setImage(die9Image);
+            setImage(die10Image);
+            setImage(die11Image);
+            setImage(die12Image);
+            updateTable();
+        }
+        var one,two,three,four,five,six;
+        function setImage(dieImg){
+            var dieValue = Math.floor ( 1 + Math.random ( ) * 6 );
+            dieImg.setAttribute( "src", "die" + dieValue + ".png");
+            dieImg.setAttribute( "alt","die image with " + dieValue + " spot (s)" );
+            
+            switch (dieValue) {
+                case 1:
+                    one++;
+                    break;
+                case 2:
+                    two++;
+                    break;
+                case 3:
+                    three++;
+                    break;
+                case 4:
+                    four++;
+                    break;
+                case 5:
+                    five++;
+                    break;
+                case 6:
+                    six++;
+                    break;
+            }
+        }
+            function updateTable() {
+            var totalRolls = one + two + three + four + five + six;
+
+            function updateTableRow(number, count) {
+                var probability = (count / totalRolls) * 100;
+                var row = document.getElementById("number" + number);
+                row.children[1].textContent = count;
+                row.children[2].textContent = probability.toFixed(2);
+            }
+
+            updateTableRow(1, one);
+            updateTableRow(2, two);
+            updateTableRow(3, three);
+            updateTableRow(4, four);
+            updateTableRow(5, five);
+            updateTableRow(6, six);
+        }
+        
+
+    </script>
+</body>
+</html>
